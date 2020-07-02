@@ -908,7 +908,6 @@ var refreshFlag = true;
         },
         /*用法:winFn.dataTableData;*/
         dataTableData : function(url,params,callback,oSettings){//oSettings是各个参数
-            $("div").data("url",url);
             oSettings.jqXHR = $.ajax({
                 dataType : 'json',
                 type : "GET",
@@ -921,6 +920,12 @@ var refreshFlag = true;
                 success : function(url,params,response,oSettings){
                     layerFn.closeIndex(self.layerIndex);
                     var data = response.responseJSON;
+                    var permissions = data.permissions;
+                    if(permissions != null && permissions.length > 0){
+                        $("div").data("permissions",permissions);
+                    }else{
+                        $("div").removeData("permissions");
+                    }
                     if(data.code === AppKey.code.code401){
                         var result = "{'msg':'没有操作权限','recordsFiltered':0,'code':401,'data':[],'recordsTotal':0}";
                         callback(eval('(' + result + ')'));
@@ -1270,19 +1275,6 @@ var refreshFlag = true;
                     succeed(data);
                 }else{
                     layerFn.alert(data.msg,data.code);
-                }
-            });
-        },
-        /**通过自定义属性控制页面的按钮是否显示,默认是隐藏,获取角色按钮再显示*/
-        permissions : function(){
-            var value = $("div").data("url");
-            ajaxRequestGet('/user/permissions',{url:value},null,function(data){
-                if(data.code === AppKey.code.code200){
-                    data = data.data;
-                    $.each(data,function(index,data){
-                        //$("[permission='"+data+"']").hide();
-                        $("[permission='"+data+"']").css({"display":"inline"});
-                    });
                 }
             });
         },

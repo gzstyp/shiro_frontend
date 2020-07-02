@@ -215,7 +215,6 @@
                     //console.info(api.column(2).data());//输出结果:Object["main", "parent_sys_setting", "sys_menu", "sys_user", "sys_role"],这个是数组，表示所有行的第3行依次从上到下的值
                     //console.info(api.column(3).data());//输出结果:Object[1, 1, 2, 2, 2],这个是数组表示第1行的第列的值是1;
                     //$(api.column(3).footer()).html(api.column(3).data().reduce(function(a,b){},0));//表示看不懂
-                    layerFn.permissions();
                 },
                 /*操作dom应放在initComplete操作???,可以在此操作判断后端返回的数据值是否显示列,https://www.cnblogs.com/daixinyu/p/6866516.html*/
                 fnInitComplete : function(settings,data){
@@ -228,6 +227,13 @@
                             api.column(k).visible(v,false);//api的用法
                         });
                         api.columns.adjust().draw(false);//api的用法
+                    }
+                    var permissions = $("div").data("permissions");
+                    if(permissions != null && permissions.length > 0){
+                        $.each(permissions,function(index,value){
+                            //$("[permission='"+data+"']").hide();
+                            $("[permission='"+value+"']").css({"display":"inline"});
+                        });
                     }
                 }
             });
