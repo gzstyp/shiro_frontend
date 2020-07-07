@@ -278,7 +278,7 @@
                     $(tableDom + ' input[type=checkbox]').prop('checked',false);
                     thisTable.draw();
                 },
-                resetFormMen : function(){
+                resetFormRole : function(){
                     winFn.clearFormData('#form_role_edit');
                 },
                 edit : function(kid,role_name,role_flag){
@@ -291,7 +291,7 @@
                         winFn.setDomValue('#input_role_edit_keyId','');
                         thisPage.openDialog(title,null);
                     }
-                    thisPage.resetFormMen();
+                    thisPage.resetFormRole();
                     if(kid != null){
                         winFn.setDomValue('#role_name',role_name);
                         winFn.setDomValue('#role_flag',role_flag);
@@ -314,7 +314,6 @@
                         };
                         thisPage.commit(kid,index,params);
                     });
-                    thisPage.resetFormMen();
                 },
                 rowEdit : function(index){
                     var data = thisJquery.fnGetData(index);
