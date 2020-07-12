@@ -79,7 +79,7 @@
     var scripts = [null,null];
     $('.page-content-area').ace_ajax('loadScripts',scripts,function(){
         var tableDom = '#tableListRole';
-        var checkOption = 1;
+        var checkOption = false;
         $(function(){
             var urlRoute = '/role/';/*请求controller层的url*/
             var getList = urlRoute + 'listData';/*获取菜单列表,此处不需要添加的,已在请求的url添加了前缀*/
@@ -352,7 +352,6 @@
                 },
                 /*角色菜单*/
                 rowRoleMenu : function(index){
-                    checkOption = 1;
                     var row = thisJquery.fnGetData(index);
                     layerFn.queryGetHint(urlGetRoleMenu,{roleId:row.kid},function(data){
                         tree_obj_own = $.fn.zTree.init($("#"+domRoleMenu),settingOwn,data.data);
@@ -372,8 +371,8 @@
                                 thisPage.complete(data,index,true);
                             });
                         },'全选',function(){
-                            checkOption++;
-                            if(checkOption % 2 === 0){
+                            checkOption = !checkOption;
+                            if(checkOption){
                                 $('a.layui-layer-btn2').text('不选');
                                 tree_obj_own.checkAllNodes(true);
                             }else{
