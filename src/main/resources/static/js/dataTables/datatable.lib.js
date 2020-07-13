@@ -221,6 +221,10 @@
                             $.each(permissions,function(index,value){
                                 //$("[permission='"+data+"']").hide();
                                 $("[permission='"+value+"']").css({"display":"inline"});
+                                var exist = $('#'+value).attr('id');
+                                if(exist){
+                                    $('#' + value).val('1');/*有值就有权限*/
+                                }
                             });
                         },30);
                     }
