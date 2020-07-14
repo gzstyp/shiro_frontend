@@ -13,6 +13,9 @@ var refreshFlag = true;
     var pos = urlPath.indexOf(pathName);
     var domain = urlPath.substring(0,pos);
     urlPrefix = 'http://192.168.3.108:901';//获取页面是不需要添加的,只是在ajax请求接口时才需要添加,注意个地方IE8++存在跨域问题
+    var tokenUrl = 'accessToken='+(sessionStorage.getItem('accessToken') || '') + '&refreshToken=' + (sessionStorage.getItem('refreshToken') || '');
+    var tokenStart = '?'+tokenUrl;
+    var tokenParams = '&'+tokenUrl;
     window.AppKey = {
         baseUri : window.location.origin,/**AppKey.baseUri*/
         iconDir : '/js/layer/theme/default/',/**AppKey.iconDir*/
@@ -898,9 +901,7 @@ var refreshFlag = true;
         },
         /*winFn.getPageHashToken('/info.html?id=1024');*/
         getPageHashToken : function(url){
-            var accessToken = sessionStorage.getItem('accessToken') || '';
-            var refreshToken = sessionStorage.getItem("refreshToken") || '';
-            url = url + '&accessToken='+accessToken+'&refreshToken='+refreshToken;
+            url = url + tokenParams;
             window.open(url,'_blank').location;/*打开新页面*/
         },
         getPageNormal : function(url){
