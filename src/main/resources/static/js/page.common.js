@@ -1937,7 +1937,8 @@ var refreshFlag = true;
                 if(typeof(callback) === "function"){
                     callback("ok");
                 }
-            });
+            }
+        );
     };
     $.ajaxSetup({
         //headers: {'accessToken': sessionStorage.getItem('accessToken') || '',"refreshToken":sessionStorage.getItem("refreshToken") || ''},//这个属性不怎么好使
