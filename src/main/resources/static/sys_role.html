@@ -385,6 +385,7 @@
                 },
                 /*角色菜单*/
                 rowRoleMenu : function(index){
+                    checkOption = false;
                     var row = thisJquery.fnGetData(index);
                     layerFn.queryGetHint(urlGetRoleMenu,{roleId:row.kid},function(data){
                         tree_obj_own = $.fn.zTree.init($("#"+domRoleMenu),settingOwn,data.data);
