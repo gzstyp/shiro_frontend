@@ -100,7 +100,6 @@
     var scripts = [null,null];
     $('.page-content-area').ace_ajax('loadScripts',scripts,function(){
         var tableDom = '#tableListUser';
-        var checkOption = false;
         $(function(){
             var urlRoute = '/user/';/*请求controller层的url*/
             var getList = urlRoute + 'listData';/*获取菜单列表,此处不需要添加的,已在请求的url添加了前缀*/
@@ -500,7 +499,7 @@
                 },
                 /*私有菜单(用户菜单)*/
                 rowUserMenu : function(index){
-                    checkOption = false;
+                    var checkOption = 1;
                     var row = thisJquery.fnGetData(index);
                     layerFn.queryGetHint(urlGetOwnMenu,{userId:row.kid},function(data){
                         tree_obj_own = $.fn.zTree.init($("#"+domOwnMenu),settingOwn,data.data);
@@ -525,8 +524,8 @@
                                 layerFn.handleResult(data.msg,data.code);
                             });
                         },'全选',function(){
-                            checkOption = !checkOption;
-                            if(checkOption){
+                            checkOption++;
+                            if(checkOption % 2 === 0){
                                 $('a.layui-layer-btn2').text('不选');
                                 tree_obj_own.checkAllNodes(true);
                             }else{
