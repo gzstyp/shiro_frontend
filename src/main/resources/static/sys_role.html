@@ -216,10 +216,6 @@
                         thisPage.trDblclick(thisTable.row(this).data());
                     });
                     $('#btnAdd').on('click',function(){
-                        if(verifyFn.inputRequired('#role_btn_add')){
-                            layerFn.alert('没有添加操作权限',AppKey.code.code199);
-                            return;
-                        }
                         thisPage.edit();
                     });
                     //搜索按钮
