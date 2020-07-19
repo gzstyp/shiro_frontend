@@ -1128,6 +1128,7 @@
     <input type="hidden" id="menu_row_edit"/>
     <input type="hidden" id="menu_row_queryById"/>
     <input type="hidden" id="menu_row_delById"/>
+    <input type="hidden" id="menu_btn_queryTreeMenu"/>
 </div>
 <script type="text/javascript">
     var scripts = [null,null];
@@ -1410,6 +1411,10 @@
                         thisPage.trDblclick(thisTable.row(this).data());
                     });
                     $('#btnAdd').on('click',function(){
+                        if(verifyFn.inputRequired('#menu_btn_add')){
+                            layerFn.alert('没有添加权限',AppKey.code.code199);
+                            return;
+                        }
                         thisPage.edit();
                     });
                     $('#btnSearch').on('click',function(){
@@ -1419,10 +1424,6 @@
                         pageDataTable.columnCustom(thisTable,tableDom,'#divKeyColumns');
                     });
                     $('#iconRefresh').on('click',function(){
-                        if(verifyFn.inputRequired('#menu_btn_listData')){
-                            layerFn.alert('没有操作权限',AppKey.code.code199);
-                            return;
-                        }
                         thisPage.search();
                     });
                     $('#btnDelPid').on('click',function(){
@@ -1474,6 +1475,10 @@
                     thisPage.edit(data.kid);
                 },
                 search : function(){
+                    if(verifyFn.inputRequired('#menu_btn_listData')){
+                        layerFn.alert('没有操作权限',AppKey.code.code199);
+                        return;
+                    }
                     $(tableDom + ' input[type=checkbox]').prop('checked',false);
                     thisTable.draw();
                 },
@@ -1485,12 +1490,16 @@
                     thisPage.DelParentNode();
                 },
                 edit : function(kid){
+                    if(verifyFn.inputRequired('#menu_btn_queryTreeMenu')){
+                        layerFn.alert('没有获取菜单数据权限',AppKey.code.code199);
+                        return;
+                    }
                     ztreeReqFlag = true;
                     var title = '添加菜单';
                     if(kid != null && kid.length >0){
                         title = '编辑菜单';
                         if(verifyFn.inputRequired('#menu_row_queryById')){
-                            layerFn.alert('没有操作权限',AppKey.code.code199);
+                            layerFn.alert('没有查询菜单操作权限',AppKey.code.code199);
                             return;
                         }
                         winFn.setDomValue('#menu_edit_keyId',kid);
