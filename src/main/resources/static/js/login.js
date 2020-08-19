@@ -70,7 +70,16 @@
                     }else{
                         layerFn.handleClose("连接服务器失败……");
                     }
-                }
+                },
+                statusCode : {
+                    404 : function(response){
+                        layerFn.handleClose("请求url路径不存在!");
+                    },
+                    500 : function(response){
+                        layerFn.handleClose("系统出现错误,稍候重试");
+                    }
+                },
+                complete : function(response,status){}
             });
         }
     };
