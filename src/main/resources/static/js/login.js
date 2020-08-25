@@ -12,7 +12,7 @@
             winFn.iePlaceholder();
             if(sessionStorage){
             }else{
-                layerFn.handleClose("<span style='color: #f00;'>你的浏览器版本过低存在安全风险<br/>请尽快升级你的浏览器……<br/>要不换个Firefox或chrome浏览器</span>");
+                layerFn.handleClose("<span style='color: #f00;'>你的浏览器版本过低存在安全风险<br/>请尽快升级你的浏览器……<br/>推荐使用Firefox或chrome浏览器</span>");
             }
         },
         login : function(){
@@ -66,7 +66,7 @@
                     layerFn.closeIndex(self.layerIndex);
                     var statusText = response.statusText;
                     if(statusText == 'No Transport'){
-                        layerFn.handleClose("<span style='color: #f00;'>连接服务器失败……<br/>或者浏览器版本过低请升级<br/>要不换个Firefox或chrome浏览器</span>");
+                        layerFn.handleClose("<span style='color: #f00;'>连接服务器失败……<br/>或者浏览器版本过低请升级<br/>推荐使用Firefox或chrome浏览器</span>");
                     }else{
                         layerFn.handleClose("连接服务器失败……");
                     }
