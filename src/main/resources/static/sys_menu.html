@@ -1151,13 +1151,6 @@
                 },
                 aoColumns : [
                     {
-                        bSortable: false,
-                        mData : "kid",
-                        sWidth : "38px",
-                        sClass : "center",
-                        sTitle : '<label title="全选|不选"><input type="checkbox" class="ace" /><span class="lbl"></span></label>'
-                    },
-                    {
                         mData : "name",
                         sTitle : "菜单名称",
                         sWidth : "16%"
@@ -1234,19 +1227,13 @@
                 ],
                 columnDefs : [
                     {
-                        targets : 0,//指定的列
-                        render : function(value,type,row,meta){//第1个参数可能会没有值!!!,当key不存在时就没有值
-                            return '<label><input type="checkbox" name="kid" value="'+value+'" style="cursor:pointer;text-decoration:none;outline:none;"/><span class="lbl"></span></label>';
-                        }
-                    },
-                    {
                         targets : -1,//指定的列
                         render : function(value,type,row,meta){
                             return "<a href='javascript:thisPage.rowEdit("+meta.row+");' style='outline:none;text-decoration: none;color:#3b8cff;margin-left:6px;display:none' permission='menu_row_edit'>编辑</a><a href='javascript:thisPage.rowDel("+meta.row+");' style='outline:none;text-decoration: none;color:#f00;margin-left:6px;display:none' permission='menu_row_delById'>删除</a>";
                         }
                     },
                     {
-                        targets: [1,2,3,4,5,6,7],
+                        targets: [0,1,2,3,4,5,6],
                         render: function (value,type,row,meta){
                             return pageDataTable.formatColumn(value);
                         }
